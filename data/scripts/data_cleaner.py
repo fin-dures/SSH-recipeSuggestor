@@ -4,7 +4,7 @@ from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer
 import csv
 
-INGREDIENTS = "datasets/ingredients.csv"
+INGREDIENTS = "/home/finlay-dures/Documents/ingredients.csv" # change to path of ingredients file
 
 def lemmatizer(word):
     return WordNetLemmatizer().lemmatize(word)

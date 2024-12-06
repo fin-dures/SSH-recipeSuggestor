@@ -1,0 +1,10 @@
+import csv
+
+
+def main():
+
+    PATH = "/home/finlay-dures/RecipeNLG/dataset/full_dataset.csv" # change to path of recipeNLG dataset
+
+    with open(PATH) as f:
+
+        reader = csv.reader(f)
