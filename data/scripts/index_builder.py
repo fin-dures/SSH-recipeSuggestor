@@ -66,7 +66,13 @@ def main():
 
     save(ingredients_index)
 
+def indexString(indexes):
+    string = ""
+    for index in indexes:
+        string+=str(index)
+        string+=","
 
+    return string
 
 def save(ingredients_index):
 
@@ -77,7 +83,7 @@ def save(ingredients_index):
             if ingredients_index[ingredient]==None or ingredients_index[ingredient]==[]:
                 continue
 
-            row = [ingredient] + ingredients_index[ingredient]
+            row = [ingredient] + [indexString(ingredients_index[ingredient])]
             writer.writerow(row)
 
 

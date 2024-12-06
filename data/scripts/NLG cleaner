@@ -1,10 +1,89 @@
 import csv
-
+import ast
 
 def main():
 
     PATH = "/home/finlay-dures/RecipeNLG/dataset/full_dataset.csv" # change to path of recipeNLG dataset
+    recipes = []
 
     with open(PATH) as f:
 
         reader = csv.reader(f)
+
+        index = -1
+
+        for line in reader:
+            line_reader = csv.reader(line,dialect=csv.excel_tab)
+
+            if index==-1:
+                index+=1
+                continue
+
+            try:
+                seperated = [line for line in line_reader]
+            except csv.Error:
+                print("newline error")
+                index+=1
+                continue
+
+            
+            try:
+                strIndex = seperated[0][0]
+                title = cleanChars(seperated[1][0])
+                ingredients = cleanChars(format(ast.literal_eval(seperated[2][0])))
+                directions = cleanChars(format(ast.literal_eval(seperated[3][0])))
+                link = cleanChars(seperated[4][0])
+            
+            except IndexError:
+                print("Index error")
+                index+=1
+                continue
+
+            except SyntaxError:
+                print("syn error")
+                index+=1
+                continue
+            except:
+                print("other exception")
+
+            try:
+                assert int(strIndex)==index
+            except:
+                print("Indexes not matching")
+
+            
+            index+=1
+
+            line = [index, title[:100], ingredients[:1000], directions[:1000], link[:1000]]
+            recipes.append(line)
+
+    save(recipes)
+
+def cleanChars(string):
+    result = ""
+    for letter in string:
+        if letter!=";" and letter!=":":
+            result+=letter
+    
+    return result
+
+def save(recipes):
+
+    SAVEFILE = "recipes.csv"
+    with open(SAVEFILE, mode="w", newline='') as f:
+        writer = csv.writer(f, delimiter=";")
+        for recipe in recipes:
+            writer.writerow(recipe)
+
+
+def format(textList):
+    string = ""
+        
+    for line in textList:
+        string+=line.strip()
+        string+=":"
+    
+    return string
+
+if __name__ == "__main__":
+    main()
