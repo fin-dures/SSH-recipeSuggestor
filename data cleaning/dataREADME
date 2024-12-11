@@ -1,0 +1,4 @@
+To use these scripts to reproduce the database. Download recipe NLG from here: https://www.kaggle.com/datasets/saldenisov/recipenlg?resource=download
+Donwload what's cooking from here https://www.kaggle.com/c/whats-cooking/data
+
+A virtual python environment with the installed dependencies is attached.

@@ -1,5 +1,0 @@
-This folder contains the data used to build the list of ingredients.
-This does not include the list of recipes (recipeNLG) for perfomance reasons
-
-The file containing the list of recipes can be found here:
-https://www.kaggle.com/datasets/saldenisov/recipenlg?resource=download
